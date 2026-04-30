@@ -1,0 +1,359 @@
+\\
+\\  This code computes the function b(u,v) and the integral that gives the value of tau in the paper 
+\\ "On the sums of distinct powers of finitely many positive integers" by Giuseppe Melfi (2026)
+\\
+\\ It gives tau=0.0131952080; 1-tau=0.98680479197 with 1 cycle forward and 17 cycles back (4' at home)
+
+
+\\ This is the best result I found. Probably it cannot be significantly improved with more backward or forward cycles (uo to the fifth decimal).
+
+
+k=1;
+
+a1(u,v) = 1/17179869184;
+a2(u,v) = 1/4294967296;
+a3(u,v) = 1/1073741824;
+a4(u,v) = 1/268435456;
+a5(u,v) = 1/67108864;
+a6(u,v) = 1/16777216;
+a7(u,v) = 1/4194304;
+a8(u,v) = 1/1048576;
+a9(u,v) = 1/262144;
+a10(u,v) = 1/65536;
+a11(u,v) = 1/16384;
+a12(u,v) = 1/4096;
+a13(u,v) = 1/1024;
+a14(u,v) = 1/256;
+a15(u,v) = 1/64;
+a16(u,v) = 1/16;
+a17(u,v) = 1/4;
+a18(u,v) = 1;
+a19(u,v) = 4;
+a20(u,v) = 1/3814697265625*u;
+a21(u,v) = 1/762939453125*u;
+a22(u,v) = 1/152587890625*u;
+a23(u,v) = 1/30517578125*u;
+a24(u,v)= 1/6103515625*u;
+a25(u,v)= 1/1220703125*u;
+a26(u,v)= 1/244140625*u;
+a27(u,v)= 1/48828125*u;
+a28(u,v) = 1/9765625*u;
+a29(u,v) = 1/1953125*u;
+a30(u,v) = 1/390625*u;
+a31(u,v) = 1/78125*u;
+a32(u,v) = 1/15625*u;
+a33(u,v) = 1/3125*u;
+a34(u,v) = 1/625*u;
+a35(u,v) = 1/125*u;
+a36(u,v) = 1/25*u;
+a37(u,v) = 1/5*u;
+a38(u,v) = min(4,u);
+a39(u,v) =1/101559956668416*v;
+a40(u,v) = 1/16926659444736*v;
+a41(u,v) = 1/2821109907456*v;
+a42(u,v) = 1/470184984576*v;
+a43(u,v) = 1/78364164096*v;
+a44(u,v) = 1/13060694016*v;
+a45(u,v) = 1/2176782336*v;
+a46(u,v) = 1/362797056*v;
+a47(u,v) = 1/60466176*v;
+a48(u,v) = 1/10077696*v;
+a49(u,v) = 1/1679616*v;
+a50(u,v) = 1/279936*v;
+a51(u,v) = 1/46656*v;
+a52(u,v) = 1/7776*v;
+a53(u,v) = 1/1296*v;
+a54(u,v) = 1/216*v;
+a55(u,v) = 1/36*v;
+a56(u,v) = 1/6*v;
+a57(u,v) = min(4,v);
+
+
+
+
+m(u,v) = vecsort([  a1(u,v), a2(u,v), a3(u,v), a4(u,v), a5(u,v), a6(u,v), a7(u,v), a8(u,v), a9(u,v), a10(u,v), a11(u,v), a12(u,v), a13(u,v), a14(u,v), a15(u,v), a16(u,v), a17(u,v), a18(u,v), a19(u,v),  a20(u,v), a21(u,v), a22(u,v), a23(u,v), a24(u,v), a25(u,v), a26(u,v), a27(u,v), a28(u,v), a29(u,v), a30(u,v), a31(u,v), a32(u,v), a33(u,v), a34(u,v), a35(u,v), a36(u,v), a37(u,v), a38(u,v), a39(u,v), a40(u,v), a41(u,v), a42(u,v), a43(u,v), a44(u,v), a45(u,v), a46(u,v), a47(u,v), a48(u,v), a49(u,v), a50(u,v), a51(u,v), a52(u,v), a53(u,v), a54(u,v), a55(u,v), a56(u,v), a57(u,v) ] );
+
+m1(u,v) = m(u,v)[1];
+m2(u,v) = m(u,v)[2];
+m3(u,v) = m(u,v)[3];
+m4(u,v) = m(u,v)[4];
+m5(u,v) = m(u,v)[5];
+m6(u,v) = m(u,v)[6];
+m7(u,v) = m(u,v)[7];
+m8(u,v) = m(u,v)[8];
+m9(u,v) = m(u,v)[9];
+m10(u,v) = m(u,v)[10];
+m11(u,v) = m(u,v)[11];
+m12(u,v) = m(u,v)[12];
+m13(u,v) = m(u,v)[13];
+m14(u,v) = m(u,v)[14];
+m15(u,v) = m(u,v)[15];
+m16(u,v) = m(u,v)[16];
+m17(u,v) = m(u,v)[17]; 
+m18(u,v) = m(u,v)[18];
+m19(u,v) = m(u,v)[19]; 
+m20(u,v) = m(u,v)[20];
+m21(u,v) = m(u,v)[21];
+m22(u,v) = m(u,v)[22]; 
+m23(u,v) = m(u,v)[23];
+m24(u,v) = m(u,v)[24];
+m25(u,v) = m(u,v)[25];
+m26(u,v) = m(u,v)[26];
+m27(u,v) = m(u,v)[27];
+m28(u,v) = m(u,v)[28];
+m29(u,v) = m(u,v)[29];
+m30(u,v) = m(u,v)[30];
+m31(u,v) = m(u,v)[31];
+m32(u,v) = m(u,v)[32];
+m33(u,v) = m(u,v)[33];
+m34(u,v) = m(u,v)[34];
+m35(u,v) = m(u,v)[35];
+m36(u,v) = m(u,v)[36];
+m37(u,v) = m(u,v)[37];
+m38(u,v) = m(u,v)[38];
+m39(u,v) = m(u,v)[39];
+m40(u,v) = m(u,v)[40];
+m41(u,v) = m(u,v)[41];
+m42(u,v) = m(u,v)[42];
+m43(u,v) = m(u,v)[43];
+m44(u,v) = m(u,v)[44];
+m45(u,v) = m(u,v)[45];
+m46(u,v) = m(u,v)[46];
+m47(u,v) = m(u,v)[47];
+m48(u,v) = m(u,v)[48];
+m49(u,v) = m(u,v)[49];
+m50(u,v) = m(u,v)[50];
+m51(u,v) = m(u,v)[51]; 
+m52(u,v) = m(u,v)[52];
+m53(u,v) = m(u,v)[53];
+m54(u,v) = m(u,v)[54]; \\ this is =1
+m55(u,v) = m(u,v)[55];
+m56(u,v) = m(u,v)[56];
+m57(u,v) = m(u,v)[57];
+
+
+b0a(u,v) = max(2*m2(u,v),m2(u,v)+2*m1(u,v));
+b0b(u,v) = b0a(u,v) / m3(u,v);
+b0(u,v)  = min(1,b0b(u,v));
+
+b1a(u,v) = max(2*m3(u,v),m3(u,v)+b0a(u,v));
+b1b(u,v) = b1b(u,v) / m4(u,v); 
+b1(u,v)  = min(1,b1b(u,v)); 
+
+b2a(u,v) = max(2*m4(u,v),m4(u,v)+b1a(u,v));
+b2b(u,v) = b2a(u,v) / m5(u,v);
+b2(u,v)  = min(1,b2b(u,v));
+
+b3a(u,v) = max(2*m5(u,v),m5(u,v)+b2a(u,v));
+b3b(u,v)=b3a(u,v) / m6(u,v);
+b3(u,v)=min(1,b3b(u,v));
+
+b4a(u,v) = max(2*m6(u,v), m6(u,v) + b3a(u,v));
+b4b(u,v) = b4a(u,v) / m7(u,v);
+b4(u,v) = min(1, b4b(u,v));
+
+b5a(u,v) = max(2*m7(u,v), m7(u,v) + b4a(u,v));
+b5b(u,v) = b5a(u,v) / m8(u,v);
+b5(u,v) = min(1, b5b(u,v));
+
+b6a(u,v) = max(2*m8(u,v), m8(u,v) + b5a(u,v));
+b6b(u,v) = b6a(u,v) / m9(u,v);
+b6(u,v) = min(1, b6b(u,v));
+
+b7a(u,v) = max(2*m9(u,v), m9(u,v) + b6a(u,v));
+b7b(u,v) = b7a(u,v) / m10(u,v);
+b7(u,v) = min(1, b7b(u,v));
+
+b8a(u,v) = max(2*m10(u,v), m10(u,v) + b7a(u,v));
+b8b(u,v) = b8a(u,v) / m11(u,v);
+b8(u,v) = min(1, b8b(u,v));
+
+b9a(u,v) = max(2*m11(u,v), m11(u,v) + b8a(u,v));
+b9b(u,v) = b9a(u,v) / m12(u,v);
+b9(u,v) = min(1, b9b(u,v));
+
+b10a(u,v) = max(2*m12(u,v), m12(u,v) + b9a(u,v));
+b10b(u,v) = b10a(u,v) / m13(u,v);
+b10(u,v) = min(1, b10b(u,v));
+
+b11a(u,v) = max(2*m13(u,v), m13(u,v) + b10a(u,v));
+b11b(u,v) = b11a(u,v) / m14(u,v);
+b11(u,v) = min(1, b11b(u,v));
+
+b12a(u,v) = max(2*m14(u,v), m14(u,v) + b11a(u,v));
+b12b(u,v) = b12a(u,v) / m15(u,v);
+b12(u,v) = min(1, b12b(u,v));
+
+b13a(u,v) = max(2*m15(u,v), m15(u,v) + b12a(u,v));
+b13b(u,v) = b13a(u,v) / m16(u,v);
+b13(u,v) = min(1, b13b(u,v));
+
+b14a(u,v) = max(2*m16(u,v), m16(u,v) + b13a(u,v));
+b14b(u,v) = b14a(u,v) / m17(u,v);
+b14(u,v) = min(1, b14b(u,v));
+
+b15a(u,v) = max(2*m17(u,v), m17(u,v) + b14a(u,v));
+b15b(u,v) = b15a(u,v) / m18(u,v);
+b15(u,v) = min(1, b15b(u,v));
+
+b16a(u,v) = max(2*m18(u,v), m18(u,v) + b15a(u,v));
+b16b(u,v) = b16a(u,v) / m19(u,v);
+b16(u,v) = min(1, b16b(u,v));
+
+b17a(u,v) = max(2*m19(u,v), m19(u,v) + b16a(u,v));
+b17b(u,v) = b17a(u,v) / m20(u,v);
+b17(u,v) = min(1, b17b(u,v));
+
+b18a(u,v) = max(2*m20(u,v), m20(u,v) + b17a(u,v));
+b18b(u,v) = b18a(u,v) / m21(u,v);
+b18(u,v) = min(1, b18b(u,v));
+
+b19a(u,v) = max(2*m21(u,v), m21(u,v) + b18a(u,v));
+b19b(u,v) = b19a(u,v) / m22(u,v);
+b19(u,v) = min(1, b19b(u,v));
+
+b20a(u,v) = max(2*m22(u,v), m22(u,v) + b19a(u,v));
+b20b(u,v) = b20a(u,v) / m23(u,v);
+b20(u,v) = min(1, b20b(u,v));
+
+b21a(u,v) = max(2*m23(u,v), m23(u,v) + b20a(u,v));
+b21b(u,v) = b21a(u,v) / m24(u,v);
+b21(u,v) = min(1, b21b(u,v));
+
+b22a(u,v) = max(2*m24(u,v), m24(u,v) + b21a(u,v));
+b22b(u,v) = b22a(u,v) / m25(u,v);
+b22(u,v)  = min(1, b22b(u,v));
+
+b23a(u,v) = max(2*m25(u,v), m25(u,v) + b22a(u,v));
+b23b(u,v) = b23a(u,v) / m26(u,v);
+b23(u,v)  = min(1, b23b(u,v));
+
+b24a(u,v) = max(2*m26(u,v), m26(u,v) + b23a(u,v));
+b24b(u,v) = b24a(u,v) / m27(u,v);
+b24(u,v)  = min(1, b24b(u,v));
+
+b25a(u,v) = max(2*m27(u,v), m27(u,v) + b24a(u,v));
+b25b(u,v) = b25a(u,v) / m28(u,v);
+b25(u,v)  = min(1, b25b(u,v));
+
+b26a(u,v) = max(2*m28(u,v), m28(u,v) + b25a(u,v));
+b26b(u,v) = b26a(u,v) / m29(u,v);
+b26(u,v)  = min(1, b26b(u,v));
+
+b27a(u,v) = max(2*m29(u,v), m29(u,v) + b26a(u,v));
+b27b(u,v) = b27a(u,v) / m30(u,v);
+b27(u,v)  = min(1, b27b(u,v));
+
+b28a(u,v) = max(2*m30(u,v), m30(u,v) + b27a(u,v));
+b28b(u,v) = b28a(u,v) / m31(u,v);
+b28(u,v)  = min(1, b28b(u,v));
+
+b29a(u,v) = max(2*m31(u,v), m31(u,v) + b28a(u,v));
+b29b(u,v) = b29a(u,v) / m32(u,v);
+b29(u,v)  = min(1, b29b(u,v));
+
+b30a(u,v) = max(2*m32(u,v), m32(u,v) + b29a(u,v));
+b30b(u,v) = b30a(u,v) / m33(u,v);
+b30(u,v)  = min(1, b30b(u,v));
+
+b31a(u,v) = max(2*m33(u,v), m33(u,v) + b30a(u,v));
+b31b(u,v) = b31a(u,v) / m34(u,v);
+b31(u,v)  = min(1, b31b(u,v));
+
+b32a(u,v) = max(2*m34(u,v), m34(u,v) + b31a(u,v));
+b32b(u,v) = b32a(u,v) / m35(u,v);
+b32(u,v)  = min(1, b32b(u,v));
+
+b33a(u,v) = max(2*m35(u,v), m35(u,v) + b32a(u,v));
+b33b(u,v) = b33a(u,v) / m36(u,v);
+b33(u,v)  = min(1, b33b(u,v));
+
+b34a(u,v) = max(2*m36(u,v), m36(u,v) + b33a(u,v));
+b34b(u,v) = b34a(u,v) / m37(u,v);
+b34(u,v)  = min(1, b34b(u,v));
+
+b35a(u,v) = max(2*m37(u,v), m37(u,v) + b34a(u,v));
+b35b(u,v) = b35a(u,v) / m38(u,v);
+b35(u,v)  = min(1, b35b(u,v));
+
+b36a(u,v) = max(2*m38(u,v), m38(u,v) + b35a(u,v));
+b36b(u,v) = b36a(u,v) / m39(u,v);
+b36(u,v)  = min(1, b36b(u,v));
+
+b37a(u,v) = max(2*m39(u,v), m39(u,v) + b36a(u,v));
+b37b(u,v) = b37a(u,v) / m40(u,v);
+b37(u,v)  = min(1, b37b(u,v));
+
+b38a(u,v) = max(2*m40(u,v), m40(u,v) + b37a(u,v));
+b38b(u,v) = b38a(u,v) / m41(u,v);
+b38(u,v)  = min(1, b38b(u,v));
+
+b39a(u,v) = max(2*m41(u,v), m41(u,v) + b38a(u,v));
+b39b(u,v) = b39a(u,v) / m42(u,v);
+b39(u,v)  = min(1, b39b(u,v));
+
+b40a(u,v) = max(2*m42(u,v), m42(u,v) + b39a(u,v));
+b40b(u,v) = b40a(u,v) / m43(u,v);
+b40(u,v)  = min(1, b40b(u,v));
+
+b41a(u,v) = max(2*m43(u,v), m43(u,v) + b40a(u,v));
+b41b(u,v) = b41a(u,v) / m44(u,v);
+b41(u,v)  = min(1, b41b(u,v));
+
+b42a(u,v) = max(2*m44(u,v), m44(u,v) + b41a(u,v));
+b42b(u,v) = b42a(u,v) / m45(u,v);
+b42(u,v)  = min(1, b42b(u,v));
+
+b43a(u,v) = max(2*m45(u,v), m45(u,v) + b42a(u,v));
+b43b(u,v) = b43a(u,v) / m46(u,v);
+b43(u,v)  = min(1, b43b(u,v));
+
+b44a(u,v) = max(2*m46(u,v), m46(u,v) + b43a(u,v));
+b44b(u,v) = b44a(u,v) / m47(u,v);
+b44(u,v)  = min(1, b44b(u,v));
+
+b45a(u,v) = max(2*m47(u,v), m47(u,v) + b44a(u,v));
+b45b(u,v) = b45a(u,v) / m48(u,v);
+b45(u,v)  = min(1, b45b(u,v));
+
+b46a(u,v) = max(2*m48(u,v), m48(u,v) + b45a(u,v));
+b46b(u,v) = b46a(u,v) / m49(u,v);
+b46(u,v)  = min(1, b46b(u,v));
+
+b47a(u,v) = max(2*m49(u,v), m49(u,v) + b46a(u,v));
+b47b(u,v) = b47a(u,v) / m50(u,v);
+b47(u,v)  = min(1, b47b(u,v));
+
+b48a(u,v) = max(2*m50(u,v), m50(u,v) + b47a(u,v));
+b48b(u,v) = b48a(u,v) / m51(u,v);
+b48(u,v)  = min(1, b48b(u,v));
+
+b49a(u,v) = max(2*m51(u,v), m51(u,v) + b48a(u,v));
+b49b(u,v) = b49a(u,v) / m52(u,v);
+b49(u,v)  = min(1, b49b(u,v));
+
+b50a(u,v) = max(2*m52(u,v), m52(u,v) + b49a(u,v));
+b50b(u,v) = b50a(u,v) / m53(u,v);
+b50(u,v)  = min(1, b50b(u,v));
+
+b51a(u,v) = max(2*m53(u,v), m53(u,v) + b50a(u,v));
+b51b(u,v) = b51a(u,v) / m54(u,v);
+b51(u,v)  = min(1, b51b(u,v));
+
+b52a(u,v) = max(2*m54(u,v), m54(u,v) + b51a(u,v));
+b52b(u,v) = b52a(u,v) / m55(u,v);
+b52(u,v)  = min(1, b52b(u,v));
+
+b53a(u,v) = max(2*m55(u,v), m55(u,v) + b52a(u,v));
+b53b(u,v) = b53a(u,v) / m56(u,v);
+b53(u,v)  = min(1, b53b(u,v));
+
+b54a(u,v) = max(2*m56(u,v), m56(u,v) + b53a(u,v));
+b54b(u,v) = b54a(u,v) / m57(u,v);
+b54(u,v)  = min(1, b54b(u,v));
+
+b(u,v)=b52(u,v)*b53(u,v)*b54(u,v);
+
+tau654=-1/(log(4)*log(5)*log(6))*intnum(x = 0, log(5), intnum(y = 0, log(6), log(b(exp(x), exp(y)))));
+
+tau654
